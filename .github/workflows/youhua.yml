@@ -8,7 +8,7 @@
 # Description: Build OpenWrt using GitHub Actions
 #
 
-name: Build OpenWrt
+name: Build OpenWrt YouHua1200JS
 
 on:
   repository_dispatch:
@@ -21,7 +21,7 @@ on:
 
 env:
   REPO_URL: http://github.com/openwrt/openwrt
-  REPO_BRANCH: master
+  REPO_BRANCH: v21.02.2
   FEEDS_CONF: feeds.conf.default
   CONFIG_FILE: youhua.config
   DIY_P1_SH: diy-part1.sh
@@ -58,7 +58,7 @@ jobs:
       working-directory: /workdir
       run: |
         df -hT $PWD
-        git clone http://github.com/openwrt/openwrt
+        git clone $REPO_URL -b $REPO_BRANCH openwrt
         ln -sf /workdir/openwrt $GITHUB_WORKSPACE/openwrt
 
     - name: Load custom feeds
